@@ -1,0 +1,52 @@
+# NPM and Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+yarn.lock
+
+# Angular build output
+dist/
+out-tsc/
+
+# Angular testing
+coverage/
+
+# Angular generated files
+.angular/
+.angular/cache
+
+# Compiled output
+*.js
+*.js.map
+
+# TypeScript
+*.tsbuildinfo
+
+# Environment files
+src/environments/*.prod.ts
+
+# IDEs and editors
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Miscellaneous
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# OS-specific files
+*.swp
+*.tmp
+
+# Git-specific
+.git
+.gitignore
+
+# Build directory for Angular Universal projects
+/server
+/server.ts
