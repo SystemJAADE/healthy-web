@@ -4,7 +4,7 @@
             <img src=".github/images/sj_logo.gif" width="50" height="50" alt="System JAADE Logo">
         </th>
         <th>
-            <h1 align="center">Healthy | Microservicios de Pacientes</h1>
+            <h1 align="center">Healthy | Sistma de Gestión Administrativa</h1>
         </th>
     </tr>
 </table>
