@@ -82,7 +82,7 @@ export class SidebarComponent extends UnsubscribeOnDestroyAdapter implements OnI
   }
   ngOnInit() {
     if (this.authService.currentAccountValue) {
-     // const userRole = this.authService.currentAccountValue.role;
+      const userRole = this.authService.currentAccountValue.permission;
 
      this.userImg = this.authService.currentAccountValue.pathImg;
 
@@ -94,19 +94,23 @@ export class SidebarComponent extends UnsubscribeOnDestroyAdapter implements OnI
         ' ' + 
         this.authService.currentAccountValue.secondSurname;
 
-   /*   this.sidebarItems = ROUTES.filter(
-        (x) => x.role.indexOf(userRole) !== -1 || x.role.indexOf('All') !== -1
+
+        
+        this.userType = Role.Patient;
+/*
+      this.sidebarItems = ROUTES.filter(
+        (x) => x.role.indexOf(userRole) !== -1 || x.role.indexOf('NotFullyRegistered') !== -1
       );
       if (userRole === Role.Admin) {
         this.userType = Role.Admin;
-      } else if (userRole === Role.Patient) {*/
+      } else if (userRole === Role.Patient) {
         this.userType = Role.Patient;
-/*      } else if (userRole === Role.Doctor) {
+     } else if (userRole === Role.Doctor) {
         this.userType = Role.Doctor;
       } else {
         this.userType = Role.Admin;
-      }
-   */ }
+      }*/
+    }
 
     // this.sidebarItems = ROUTES.filter((sidebarItem) => sidebarItem);
     this.initLeftSidebar();

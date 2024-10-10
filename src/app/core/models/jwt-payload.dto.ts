@@ -2,6 +2,7 @@ export interface SubroleDto {
     id: number;
     name: string;
     roleId: number;
+    roleName: string;
   }
   
   export interface RoleDto {
@@ -11,7 +12,6 @@ export interface SubroleDto {
   }
   
   export interface PermissionDto {
-    role: RoleDto;
     subroles: SubroleDto[];
   }
   

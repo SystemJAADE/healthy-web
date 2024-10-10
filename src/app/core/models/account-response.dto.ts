@@ -9,15 +9,6 @@ export interface Role {
 export interface Subrole {
     id: number;
     name: string;
-    roleId: number;
-}
-  
-export interface Permission {
-    id: number;
-    accountId: string;
-    roleId: number;
-    subroleId: number;
-    role: Role;
 }
 
 export interface AccountDto {
@@ -41,6 +32,6 @@ export interface AccountDto {
     credentialId: string;
     createdAt: Date;
     updatedAt: Date;
-    permission: Permission[];
+    permission: Role[];
 
 }

@@ -3,16 +3,20 @@ import { Injectable } from '@angular/core';
 import { AccountDto } from '@core/models/account-response.dto';
 import { AuthResponseDTO } from '@core/models/auth-response.dto';
 import { JwtPayloadDto } from '@core/models/jwt-payload.dto';
+import { RegisterDto } from '@core/models/register.dto';
 import { jwtDecode } from 'jwt-decode';
 import { BehaviorSubject, catchError, Observable, of, throwError } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
 
-  private LOGIN_URL = 'http://localhost:3000/oauth/token';
-  private ACCOUNTS_URL = 'http://localhost:3000/accounts';
+  private LOGIN_URL = `${environment.APIR_URL}/oauth/token`;
+  private REGISTER_URL = `${environment.APIR_URL}/oauth/registration`;
+  private ACCOUNTS_URL = `${environment.APIR_URL}/accounts`;
+
   private currentAuthSubject: BehaviorSubject<AuthResponseDTO>;
   public currentAuth: Observable<AuthResponseDTO>;
   private currentAccountSubject: BehaviorSubject<AccountDto>;
@@ -37,14 +41,21 @@ export class AuthService {
     return this.currentAccountSubject.value;
   }
 
-  loginCustom(credentials: any): Observable<AuthResponseDTO> {
-
-    const headers = new HttpHeaders({
+  private getHeaders(): HttpHeaders {
+    return new HttpHeaders({
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     });
-  
+  }
+
+  loginCustom(credentials: any): Observable<AuthResponseDTO> {
+    const headers = this.getHeaders();
     return this.http.post<AuthResponseDTO>(this.LOGIN_URL, credentials, { headers });
+  }
+
+  registration(registerDto: RegisterDto) {
+    const headers = this.getHeaders();
+    return this.http.post<String[]>(this.REGISTER_URL, registerDto, { headers })
   }
 
   setAccounts(authResponse: AuthResponseDTO) {
@@ -58,20 +69,16 @@ export class AuthService {
     });
   }
 
-  accountByUsername(accessToken: string): Observable <AccountDto>{
+  accountByUsername(accessToken: string): Observable<AccountDto> {
     const payload = this.decodeToken(accessToken);
     const identifier = payload?.current_account?.identifier;
-
-    const headers = new HttpHeaders({
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-    });
+    const headers = this.getHeaders();
 
     return this.http.get<AccountDto>(`${this.ACCOUNTS_URL}/${identifier}`, { headers })
       .pipe(
         catchError(error => {
           console.error('Error fetching account:', error);
-          throw error;
+          return throwError(error);
         })
       );
   }
@@ -92,5 +99,5 @@ export class AuthService {
     const decodedToken = jwtDecode(accessToken);
     return decodedToken as JwtPayloadDto;
   }
-  
+
 }
