@@ -7,30 +7,30 @@
     <div class="col-sm-6 px-0 auth-form-section">
       <div class="form-section">
         <div class="sign-up-wrapper">
-          <h6 class="welcome-msg" i18n="@@signUpLabel"> Sign Up </h6>
-          <p class="auth-signup-text text-muted" i18n="signUpDetails">Enter details to create your account</p>
+          <h6 class="welcome-msg" i18n="@@signUpLabel">{{ 'SIGN_UP.SIGN_UP' | translate }}</h6>
+          <p class="auth-signup-text text-muted" i18n="signUpDetails">{{ 'SIGN_UP.ENTER_DETAILS' | translate }}</p>
           <form class="validate-form" [formGroup]="authForm" (ngSubmit)="onSubmit()">
 
             <div class="row">
               <!-- First Surname -->
               <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                 <mat-form-field class="example-full-width" appearance="outline">
-                  <mat-label>First Surname</mat-label>
+                  <mat-label>{{ 'SIGN_UP.FIRST_SURNAME' | translate }}</mat-label>
                   <input matInput formControlName="firstSurname" required>
                   <mat-icon class="material-icons-outlined color-icon p-3" matSuffix>badge</mat-icon>
                   <mat-error *ngIf="authForm.get('firstSurname')?.hasError('required') && authForm.get('firstSurname')?.touched">
-                    First Surname is required
+                    {{ 'SIGN_UP.FIRST_SURNAME_IS_REQUIRED' | translate }}
                   </mat-error>
                 </mat-form-field>
               </div>
               <!-- Second Surname -->
               <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                 <mat-form-field class="example-full-width" appearance="outline">
-                  <mat-label>Second Surname</mat-label>
+                  <mat-label>{{ 'SIGN_UP.SECOND_SURNAME' | translate }}</mat-label>
                   <input matInput formControlName="secondSurname" required>
                   <mat-icon class="material-icons-outlined color-icon p-3" matSuffix>badge</mat-icon>
                   <mat-error *ngIf="authForm.get('secondSurname')?.hasError('required') && authForm.get('secondSurname')?.touched">
-                    Second Surname is required
+                    {{ 'SIGN_UP.SECOND_SURNAME_IS_REQUIRED' | translate }}
                   </mat-error>
                 </mat-form-field>
               </div>
@@ -40,18 +40,18 @@
               <!-- First Name -->
               <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                 <mat-form-field class="example-full-width" appearance="outline">
-                  <mat-label>First Name</mat-label>
+                  <mat-label>{{ 'SIGN_UP.FIRST_NAME' | translate }}</mat-label>
                   <input matInput formControlName="firstName" required>
                   <mat-icon class="material-icons-outlined color-icon p-3" matSuffix>badge</mat-icon>
                   <mat-error *ngIf="authForm.get('firstName')?.hasError('required') && authForm.get('firstName')?.touched">
-                    First Name is required
+                    {{ 'SIGN_UP.FIRST_NAME_IS_REQUIRED' | translate }}
                   </mat-error>
                 </mat-form-field>
               </div>
               <!-- Middle Name -->
               <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                 <mat-form-field class="example-full-width" appearance="outline">
-                  <mat-label>Middle Name</mat-label>
+                  <mat-label>{{ 'SIGN_UP.MIDDLE_NAME' | translate }}</mat-label>
                   <input matInput formControlName="middleName">
                   <mat-icon class="material-icons-outlined color-icon p-3" matSuffix>badge</mat-icon>
                 </mat-form-field>
@@ -62,18 +62,18 @@
               <!-- Document Identity -->
               <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                 <mat-form-field class="example-full-width" appearance="outline">
-                  <mat-label>Document Identity</mat-label>
+                  <mat-label>{{ 'SIGN_UP.DOCUMENT_IDENTITY' | translate }}</mat-label>
                   <input matInput formControlName="documentIdentity" required>
                   <mat-icon class="material-icons-outlined color-icon p-3" matSuffix>card_membership</mat-icon>
                   <mat-error *ngIf="authForm.get('documentIdentity')?.hasError('required') && authForm.get('documentIdentity')?.touched">
-                    Document Identity is required
+                    {{ 'SIGN_UP.DOCUMENT_IDENTITY_IS_REQUIRED' | translate }}
                   </mat-error>
                 </mat-form-field>
               </div>
               <!-- Gender -->
               <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                 <mat-form-field class="example-full-width" appearance="outline">
-                  <mat-label>Gender</mat-label>
+                  <mat-label>{{ 'SIGN_UP.GENDER' | translate }}</mat-label>
                   <mat-select formControlName="gender" required>
                     <mat-option *ngFor="let gender of genders" [value]="gender.value">
                       {{ gender.viewValue }}
@@ -81,7 +81,7 @@
                   </mat-select>
                   <mat-icon class="material-icons-outlined color-icon p-3" matSuffix>person</mat-icon>
                   <mat-error *ngIf="authForm.get('gender')?.hasError('required')">
-                    Gender is required
+                    {{ 'SIGN_UP.GENDER_IS_REQUIRED' | translate }}
                   </mat-error>
                 </mat-form-field>
               </div>
@@ -91,22 +91,22 @@
               <!-- Cell Phone -->
               <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                 <mat-form-field class="example-full-width" appearance="outline">
-                  <mat-label>Cell Phone</mat-label>
+                  <mat-label>{{ 'SIGN_UP.CELL_PHONE' | translate }}</mat-label>
                   <input matInput formControlName="cellPhone" required>
                   <mat-icon class="material-icons-outlined color-icon p-3" matSuffix>phone_iphone</mat-icon>
                   <mat-error *ngIf="authForm.get('cellPhone')?.hasError('required') && authForm.get('cellPhone')?.touched">
-                    Cell Phone is required
+                    {{ 'SIGN_UP.CELL_PHONE_IS_REQUIRED' | translate }}
                   </mat-error>
                 </mat-form-field>
               </div>
               <!-- Home Phone -->
               <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                 <mat-form-field class="example-full-width" appearance="outline">
-                  <mat-label>Home Phone</mat-label>
+                  <mat-label>{{ 'SIGN_UP.HOME_PHONE' | translate }}</mat-label>
                   <input matInput formControlName="homePhone" required>
                   <mat-icon class="material-icons-outlined color-icon p-3" matSuffix>phone</mat-icon>
                   <mat-error *ngIf="authForm.get('homePhone')?.hasError('required') && authForm.get('homePhone')?.touched">
-                    Home Phone is required
+                    {{ 'SIGN_UP.HOME_PHONE_IS_REQUIRED' | translate }}
                   </mat-error>
                 </mat-form-field>
               </div>
@@ -116,18 +116,18 @@
               <!-- Address -->
               <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                 <mat-form-field class="example-full-width" appearance="outline">
-                  <mat-label>Address</mat-label>
+                  <mat-label>{{ 'SIGN_UP.ADDRESS' | translate }}</mat-label>
                   <input matInput formControlName="address" required>
                   <mat-icon class="material-icons-outlined color-icon p-3" matSuffix>location_on</mat-icon>
                   <mat-error *ngIf="authForm.get('address')?.hasError('required') && authForm.get('address')?.touched">
-                    Address is required
+                    {{ 'SIGN_UP.ADDRESS_IS_REQUIRED' | translate }}
                   </mat-error>
                 </mat-form-field>
               </div>
               <!-- Ubigeo Department -->
               <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                 <mat-form-field class="example-full-width" appearance="outline">
-                  <mat-label>Department</mat-label>
+                  <mat-label>{{ 'SIGN_UP.DEPARTMENT' | translate }}</mat-label>
                   <mat-select formControlName="ubigeoDepartmentId" required>
                     <mat-option *ngFor="let department of departments" [value]="department.id">
                       {{ department.name }}
@@ -135,7 +135,7 @@
                   </mat-select>
                   <mat-icon class="material-icons-outlined color-icon p-3" matSuffix>map</mat-icon>
                   <mat-error *ngIf="authForm.get('ubigeoDepartmentId')?.hasError('required')">
-                    Department is required
+                    {{ 'SIGN_UP.DEPARTMENT_IS_REQUIRED' | translate }}
                   </mat-error>
                 </mat-form-field>
               </div>
@@ -145,7 +145,7 @@
               <!-- Ubigeo Province -->
               <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                 <mat-form-field class="example-full-width" appearance="outline">
-                  <mat-label>Province</mat-label>
+                  <mat-label>{{ 'SIGN_UP.PROVINCE' | translate }}</mat-label>
                   <mat-select formControlName="ubigeoProvinceId" required>
                     <mat-option *ngFor="let province of provinces" [value]="province.id">
                       {{ province.name }}
@@ -153,14 +153,14 @@
                   </mat-select>
                   <mat-icon class="material-icons-outlined color-icon p-3" matSuffix>map</mat-icon>
                   <mat-error *ngIf="authForm.get('ubigeoProvinceId')?.hasError('required')">
-                    Province is required
+                    {{ 'SIGN_UP.PROVINCE_IS_REQUIRED' | translate }}
                   </mat-error>
                 </mat-form-field>
               </div>
               <!-- Ubigeo District -->
               <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                 <mat-form-field class="example-full-width" appearance="outline">
-                  <mat-label>District</mat-label>
+                  <mat-label>{{ 'SIGN_UP.DISTRICT' | translate }}</mat-label>
                   <mat-select formControlName="ubigeoDistrictId" required>
                     <mat-option *ngFor="let district of districts" [value]="district.id">
                       {{ district.name }}
@@ -168,7 +168,7 @@
                   </mat-select>
                   <mat-icon class="material-icons-outlined color-icon p-3" matSuffix>map</mat-icon>
                   <mat-error *ngIf="authForm.get('ubigeoDistrictId')?.hasError('required')">
-                    District is required
+                    {{ 'SIGN_UP.DISTRICT_IS_REQUIRED' | translate }}
                   </mat-error>
                 </mat-form-field>
               </div>
@@ -178,12 +178,12 @@
               <!-- Email -->
               <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                 <mat-form-field class="example-full-width" appearance="outline">
-                  <mat-label>Email</mat-label>
+                  <mat-label>{{ 'SIGN_UP.EMAIL' | translate }}</mat-label>
                   <input matInput formControlName="email" required>
                   <mat-icon class="material-icons-outlined color-icon p-3" matSuffix>mail</mat-icon>
                   @if (authForm.get('email')!.hasError('required') || authForm.get('email')!.touched) {
                   <mat-error>
-                    Please enter a valid email address
+                    {{ 'SIGN_UP.PLEASE_ENTER_A_VALID_EMAIL_ADDRESS' | translate }}
                   </mat-error>
                   }
                 </mat-form-field>
@@ -191,12 +191,12 @@
               <!-- Username -->
               <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                 <mat-form-field class="example-full-width" appearance="outline">
-                  <mat-label>Username</mat-label>
+                  <mat-label>{{ 'SIGN_UP.USERNAME' | translate }}</mat-label>
                   <input matInput formControlName="username" required>
                   <mat-icon class="material-icons-outlined color-icon p-3" matSuffix>face</mat-icon>
                   @if (authForm.get('username')!.hasError('required')) {
                   <mat-error>
-                    Username is required
+                    {{ 'SIGN_UP.USERNAME_IS_REQUIRED' | translate }}
                   </mat-error>
                   }
                 </mat-form-field>
@@ -207,13 +207,13 @@
               <!-- Password -->
               <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                 <mat-form-field class="example-full-width" appearance="outline">
-                  <mat-label>Password</mat-label>
+                  <mat-label>{{ 'SIGN_UP.PASSWORD' | translate }}</mat-label>
                   <input matInput formControlName="password" [type]="hide ? 'password' : 'text'" required>
                   <mat-icon class="material-icons-outlined pwd-toggle p-3" matSuffix (click)="hide = !hide">
                     {{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                   @if (authForm.get('password')!.hasError('required')) {
                   <mat-error>
-                    Password is required
+                    {{ 'SIGN_UP.PASSWORD_IS_REQUIRED' | translate }}
                   </mat-error>
                   }
                 </mat-form-field>
@@ -221,13 +221,13 @@
               <!-- Confirm Password -->
               <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                 <mat-form-field class="example-full-width" appearance="outline">
-                  <mat-label>Confirm Password</mat-label>
+                  <mat-label>{{ 'SIGN_UP.CONFIRM_PASSWORD' | translate }}</mat-label>
                   <input matInput formControlName="cpassword" [type]="chide ? 'password' : 'text'" required>
                   <mat-icon class="material-icons-outlined pwd-toggle p-3" matSuffix (click)="chide = !chide">
                     {{chide ? 'visibility_off' : 'visibility'}}</mat-icon>
                   @if (authForm.get('cpassword')!.hasError('required')) {
                   <mat-error>
-                    Confirm Password is required
+                    {{ 'SIGN_UP.CONFIRM_PASSWORD_IS_REQUIRED' | translate }}
                   </mat-error>
                   }
                 </mat-form-field>
@@ -235,14 +235,14 @@
             </div>
             <div class="flex-sb-m w-full  p-b-20">
               <div>
-                <span>Already Registered? <a routerLink="/authentication/signin">
-                    Login
+                <span>{{ 'SIGN_UP.ALREADY_REGISTERED' | translate }} <a routerLink="/authentication/signin">
+                  {{ 'SIGN_UP.LOGIN' | translate }}
                   </a></span>
               </div>
             </div>
             <div class="container-auth-form-btn">
               <button mat-flat-button color="accent" class="auth-form-btn" [disabled]="!authForm.valid " type="submit">
-                Register
+                {{ 'SIGN_UP.REGISTER' | translate }}
               </button>
             </div>
           </form>

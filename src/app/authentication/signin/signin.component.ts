@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '@core';
 import { AuthResponseDTO } from '@core/models/auth-response.dto';
+import { TranslateModule } from '@ngx-translate/core';
 import { UnsubscribeOnDestroyAdapter } from '@shared';
 
 @Component({
@@ -22,6 +23,7 @@ import { UnsubscribeOnDestroyAdapter } from '@shared';
         MatFormFieldModule,
         MatInputModule,
         MatIconModule,
+        TranslateModule
     ],
 })
 export class SigninComponent

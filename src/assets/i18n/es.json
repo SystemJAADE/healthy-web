@@ -98,15 +98,15 @@
         "ISSUED-ITEMS": "Artículos emitidos"
       }
     },
-    "DOCTOR": {    
-        "DASHBOARD": "Tablero",
-        "APPOINTMENTS": "Equipo",
-        "DOCTORS": "Doctoras",
-        "PATIENTS": "Pacientes",
-        "SETTINGS": "Configuraciones",
-        "CHAT": "Charla"
+    "DOCTOR": {
+      "DASHBOARD": "Tablero",
+      "APPOINTMENTS": "Equipo",
+      "DOCTORS": "Doctoras",
+      "PATIENTS": "Pacientes",
+      "SETTINGS": "Configuraciones",
+      "CHAT": "Charla"
     },
-    "PATIENT": {    
+    "PATIENT": {
       "TEXT": "Paciente",
       "DASHBOARD": "Tablero",
       "APPOINTMENTS": {
@@ -137,9 +137,57 @@
       "TEXT": "Contactos"
     }
   },
+  "SIGN_IN": {
+    "USERNAME": "Nombre de usuario",
+    "WELCOME": "Bienvenido a Healthy",
+    "NEED_AN_ACCOUNT": "¿Necesitas una cuenta?",
+    "SING_UP": "Registrarme",
+    "SINGN_IN": "Iniciar sesión",
+    "USERNAME_IS_REQUIRED": "El nombre de usuario es obligatorio",
+    "PASSWORD": "Contraseña",
+    "PASSWORD_IS_REQUIRED": "La contraseña es obligatorio",
+    "REMEMBER_ME": "Recordarme",
+    "FORGOT_PASSWORD": "¿Has olvidado tu contraseña?",
+    "LOGIN": "Iniciar sesión",
+    "OR": "O"
+  },
   "SIGN_UP": {
     "SIGN_UP": "Registrarme",
-    "ENTER_DETAILS": "Ingrese los detalles para crear su cuenta"
+    "ENTER_DETAILS": "Ingrese los detalles para crear su cuenta",
+    "FIRST_SURNAME": "Primer Apellido",
+    "FIRST_SURNAME_IS_REQUIRED": "El primer apellido es obligatorio.",
+    "SECOND_SURNAME": "Segundo Apellido",
+    "SECOND_SURNAME_IS_REQUIRED": "El segundo apellido es obligatorio.",
+    "FIRST_NAME": "Nombre",
+    "FIRST_NAME_IS_REQUIRED": "El nombre es obligatorio.",
+    "MIDDLE_NAME": "Segundo Nombre",
+    "DOCUMENT_IDENTITY": "Documento de Identidad",
+    "DOCUMENT_IDENTITY_IS_REQUIRED": "El documento de identidad es obligatorio.",
+    "GENDER": "Género",
+    "GENDER_IS_REQUIRED": "Elige una opción.",
+    "CELL_PHONE": "Teléfono Celular",
+    "CELL_PHONE_IS_REQUIRED": "El teléfono celular es obligatorio.",
+    "HOME_PHONE": "Teléfono de Casa",
+    "HOME_PHONE_IS_REQUIRED": "El teléfono de casa es obligatorio.",
+    "ADDRESS": "Dirección",
+    "ADDRESS_IS_REQUIRED": "La dirección es obligatoria.",
+    "DEPARTMENT": "Departamento",
+    "DEPARTMENT_IS_REQUIRED": "El departamento es obligatorio.",
+    "PROVINCE": "Provincia",
+    "PROVINCE_IS_REQUIRED": "La provincia es obligatoria.",
+    "DISTRICT": "Distrito",
+    "DISTRICT_IS_REQUIRED": "El distrito es obligatorio.",
+    "EMAIL": "Correo Electrónico",
+    "PLEASE_ENTER_A_VALID_EMAIL_ADDRESS": "Introduce una dirección de correo electrónico válida.",
+    "USERNAME": "Nombre de Usuario",
+    "USERNAME_IS_REQUIRED": "El nombre de usuario es obligatorio.",
+    "PASSWORD": "Contraseña",
+    "PASSWORD_IS_REQUIRED": "La contraseña es obligatoria.",
+    "CONFIRM_PASSWORD": "Confirmar Contraseña",
+    "CONFIRM_PASSWORD_IS_REQUIRED": "La confirmación de contraseña es obligatoria.",
+    "ALREADY_REGISTERED": "¿Ya estás registrado?",
+    "LOGIN": "Iniciar Sesión",
+    "REGISTER": "Registrarse"
   },
   "SIDEBAR": {
     "LOGOUT": "Cerrar sesión"
