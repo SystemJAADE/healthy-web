@@ -1,3 +1,4 @@
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import {
   HTTP_INTERCEPTORS,
   HttpClient,
@@ -5,25 +6,24 @@ import {
   withInterceptorsFromDi,
 } from '@angular/common/http';
 import { ApplicationConfig, importProvidersFrom } from '@angular/core';
-import { APP_ROUTE } from './app.routes';
-import { provideRouter } from '@angular/router';
-import { provideAnimations } from '@angular/platform-browser/animations';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { JwtInterceptor } from '@core/interceptor/jwt.interceptor';
-import { ErrorInterceptor } from '@core/interceptor/error.interceptor';
-import { DirectionService, LanguageService } from '@core';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import {
   DateAdapter,
   MAT_DATE_FORMATS,
   MAT_DATE_LOCALE,
 } from '@angular/material/core';
-import { MomentDateAdapter } from '@angular/material-moment-adapter';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { provideRouter } from '@angular/router';
+import { DirectionService, LanguageService } from '@core';
+import { ErrorInterceptor } from '@core/interceptor/error.interceptor';
+import { JwtInterceptor } from '@core/interceptor/jwt.interceptor';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { FeatherModule } from 'angular-feather';
 import { allIcons } from 'angular-feather/icons';
 import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { APP_ROUTE } from './app.routes';
 
 export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -39,7 +39,7 @@ export const appConfig: ApplicationConfig = {
     LanguageService,
     importProvidersFrom(
       TranslateModule.forRoot({
-        defaultLanguage: 'en',
+        defaultLanguage: 'es',
         loader: {
           provide: TranslateLoader,
           useFactory: createTranslateLoader,
@@ -47,7 +47,7 @@ export const appConfig: ApplicationConfig = {
         },
       })
     ),
-    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
+    { provide: MAT_DATE_LOCALE, useValue: 'en-PE' },
     { provide: DateAdapter, useClass: MomentDateAdapter },
     {
       provide: MAT_DATE_FORMATS,

@@ -19,6 +19,7 @@ import {
   LanguageService,
   RightSidebarService,
 } from '@core';
+import { TranslateModule } from '@ngx-translate/core';
 import { UnsubscribeOnDestroyAdapter } from '@shared';
 import { FeatherIconsComponent } from '@shared/components/feather-icons/feather-icons.component';
 import { NgScrollbar } from 'ngx-scrollbar';
@@ -45,7 +46,8 @@ interface Notifications {
     FeatherIconsComponent,
     MatIconModule,
     MatToolbarModule,
-    MatDividerModule
+    MatDividerModule,
+    TranslateModule,
   ],
 })
 export class HeaderComponent
@@ -79,9 +81,8 @@ export class HeaderComponent
   }
 
   listLang = [
-    { text: 'English', flag: 'assets/images/flags/us.svg', lang: 'en' },
     { text: 'Spanish', flag: 'assets/images/flags/spain.svg', lang: 'es' },
-    { text: 'German', flag: 'assets/images/flags/germany.svg', lang: 'de' },
+    { text: 'English', flag: 'assets/images/flags/us.svg', lang: 'en' },
   ];
   notifications: Notifications[] = [
     {

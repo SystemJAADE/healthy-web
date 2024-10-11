@@ -79,8 +79,8 @@ export const ROUTES: RouteInfo[] = [
     role: ["Patient"],
     submenu: [],
   },
-  // Common Modules
 
+  // Common Modules
   {
     path: "",
     title: "Authentication",

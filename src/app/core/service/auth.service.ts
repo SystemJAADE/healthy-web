@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AccountDto } from '@core/models/account-response.dto';
 import { AuthResponseDTO } from '@core/models/auth-response.dto';
@@ -15,7 +15,7 @@ export class AuthService {
 
   private LOGIN_URL = `${environment.APIR_URL}/oauth/token`;
   private REGISTER_URL = `${environment.APIR_URL}/oauth/registration`;
-  private ACCOUNTS_URL = `${environment.APIR_URL}/accounts`;
+  private ACCOUNTS_URL = `${environment.APIR_URL}/account`;
 
   private currentAuthSubject: BehaviorSubject<AuthResponseDTO>;
   public currentAuth: Observable<AuthResponseDTO>;
@@ -41,21 +41,12 @@ export class AuthService {
     return this.currentAccountSubject.value;
   }
 
-  private getHeaders(): HttpHeaders {
-    return new HttpHeaders({
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    });
-  }
-
   loginCustom(credentials: any): Observable<AuthResponseDTO> {
-    const headers = this.getHeaders();
-    return this.http.post<AuthResponseDTO>(this.LOGIN_URL, credentials, { headers });
+    return this.http.post<AuthResponseDTO>(this.LOGIN_URL, credentials);
   }
 
   registration(registerDto: RegisterDto) {
-    const headers = this.getHeaders();
-    return this.http.post<String[]>(this.REGISTER_URL, registerDto, { headers })
+    return this.http.post<String[]>(this.REGISTER_URL, registerDto)
   }
 
   setAccounts(authResponse: AuthResponseDTO) {
@@ -72,9 +63,8 @@ export class AuthService {
   accountByUsername(accessToken: string): Observable<AccountDto> {
     const payload = this.decodeToken(accessToken);
     const identifier = payload?.current_account?.identifier;
-    const headers = this.getHeaders();
 
-    return this.http.get<AccountDto>(`${this.ACCOUNTS_URL}/${identifier}`, { headers })
+    return this.http.get<AccountDto>(`${this.ACCOUNTS_URL}/${identifier}`)
       .pipe(
         catchError(error => {
           console.error('Error fetching account:', error);

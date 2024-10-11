@@ -136,5 +136,16 @@
     "CONTACTS": {
       "TEXT": "Contacts"
     }
+  },
+  "SIGN_UP": {
+    "SIGN_UP": "Sign Up",
+    "ENTER_DETAILS": "Enter details to reate your account"
+  },
+  "SIDEBAR": {
+    "LOGOUT": "Logout"
+  },
+  "HEADER": {
+    "MARK_ALL_AS_READ": "Mark all as read",
+    "LOGOUT": "Logout"
   }
 }

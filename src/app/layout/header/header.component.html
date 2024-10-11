@@ -36,7 +36,7 @@
           <mat-menu #notificationMenu="matMenu" class="nfc-menu">
             <div class="nfc-header">
               <h5 class="mb-0">Notitications</h5>
-              <a class="nfc-mark-as-read">Mark all as read</a>
+              <a class="nfc-mark-as-read">{{ 'HEADER.MARK_ALL_AS_READ' | translate }}</a>
             </div>
             <div class="nfc-dropdown">
               <ng-scrollbar style="height: 350px" visibility="hover">
@@ -145,7 +145,7 @@
                     <app-feather-icons [icon]="'settings'" [class]="'user-menu-icons'"></app-feather-icons>Settings
                   </button>
                   <button mat-menu-item (click)="logout()" class="user-item-list">
-                    <app-feather-icons [icon]="'log-out'" [class]="'user-menu-icons'"></app-feather-icons>Logout
+                    <app-feather-icons [icon]="'log-out'" [class]="'user-menu-icons'"></app-feather-icons>{{ 'HEADER.LOGOUT' | translate }}
                   </button>
                 </div>
               </div>

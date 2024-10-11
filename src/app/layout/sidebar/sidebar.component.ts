@@ -14,6 +14,7 @@ import { AuthService, Role } from '@core';
 import { TranslateModule } from '@ngx-translate/core';
 import { UnsubscribeOnDestroyAdapter } from '@shared';
 import { NgScrollbar } from 'ngx-scrollbar';
+import { ROUTES } from './sidebar-items';
 import { RouteInfo } from './sidebar.metadata';
 @Component({
   selector: 'app-sidebar',
@@ -112,7 +113,7 @@ export class SidebarComponent extends UnsubscribeOnDestroyAdapter implements OnI
       }*/
     }
 
-    // this.sidebarItems = ROUTES.filter((sidebarItem) => sidebarItem);
+     this.sidebarItems = ROUTES.filter((sidebarItem) => sidebarItem);
     this.initLeftSidebar();
     this.bodyTag = this.document.body;
   }
