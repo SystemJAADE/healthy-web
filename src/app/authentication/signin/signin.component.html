@@ -1,4 +1,27 @@
 <div class="auth-container">
+  <!-- Agregar el selector de idioma aquí -->
+  <div class="language-selector" style="position: absolute; top: 10px; right: 10px;">
+    <button mat-icon-button [matMenuTriggerFor]="languagemenu" class="lang-dropdown nav-notification-icons">
+      @if (flagvalue !== undefined) {
+        <img src="{{flagvalue}}" height="16">
+      }
+      @if (flagvalue === undefined) {
+        <img src="{{defaultFlag}}" height="16">
+      }
+    </button>
+    <mat-menu #languagemenu="matMenu" class="lang-item-menu">
+      @for (item of listLang; track item) {
+        <div class="lang-item">
+          <button mat-menu-item class="dropdown-item lang-item-list"
+            (click)="setLanguage(item.text, item.lang, item.flag)"
+            [class.active]="langStoreValue === item.lang">
+            <img [src]="item.flag" class="flag-img" height="12"> <span class="align-middle">{{item.text}}</span>
+          </button>
+        </div>
+      }
+    </mat-menu>
+  </div>
+
   <div class="row auth-main">
     <div class="col-sm-6 px-0 d-none d-sm-block">
       <div class="left-img" style="background-image: url(assets/images/pages/bg-06.png);">

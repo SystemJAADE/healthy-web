@@ -193,6 +193,7 @@
     "LOGOUT": "Logout"
   },
   "HEADER": {
+    "NOTIFICATIONS": "Notifications",
     "MARK_ALL_AS_READ": "Mark all as read",
     "LOGOUT": "Logout"
   }

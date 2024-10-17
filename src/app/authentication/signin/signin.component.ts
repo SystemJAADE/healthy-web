@@ -4,8 +4,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatMenuModule } from '@angular/material/menu';
 import { Router, RouterLink } from '@angular/router';
-import { AuthService } from '@core';
+import { AuthService, LanguageService } from '@core';
 import { AuthResponseDTO } from '@core/models/auth-response.dto';
 import { TranslateModule } from '@ngx-translate/core';
 import { UnsubscribeOnDestroyAdapter } from '@shared';
@@ -18,6 +19,7 @@ import { UnsubscribeOnDestroyAdapter } from '@shared';
     imports: [
         RouterLink,
         MatButtonModule,
+        MatMenuModule,
         FormsModule,
         ReactiveFormsModule,
         MatFormFieldModule,
@@ -34,19 +36,45 @@ export class SigninComponent
   loading = false;
   error = '';
   hide = true;
+  flagvalue: string | string[] | undefined;
+  defaultFlag?: string;
+  countryName: string | string[] = [];
+  langStoreValue?: string;
+
   constructor(
     private formBuilder: UntypedFormBuilder,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    public languageService: LanguageService
   ) {
     super();
   }
 
+  listLang = [
+    { text: 'Spanish', flag: 'assets/images/flags/spain.svg', lang: 'es' },
+    { text: 'English', flag: 'assets/images/flags/us.svg', lang: 'en' },
+  ];
+  setLanguage(text: string, lang: string, flag: string) {
+    this.countryName = text;
+    this.flagvalue = flag;
+    this.langStoreValue = lang;
+    this.languageService.setLanguage(lang);
+  }
   ngOnInit() {
     this.authForm = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
     });
+    this.langStoreValue = localStorage.getItem('lang') as string;
+    const val = this.listLang.filter((x) => x.lang === this.langStoreValue);
+    this.countryName = val.map((element) => element.text);
+    if (val.length === 0) {
+      if (this.flagvalue === undefined) {
+        this.defaultFlag = 'assets/images/flags/us.svg';
+      }
+    } else {
+      this.flagvalue = val.map((element) => element.flag);
+    }
   }
   get f() {
     return this.authForm.controls;

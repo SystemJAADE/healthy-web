@@ -6,9 +6,10 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { AuthService } from '@core';
+import { AuthService, LanguageService } from '@core';
 import { RegisterDto } from '@core/models/register.dto';
 import { DepartmentDto, DistrictDto, ProvinceDto } from '@core/models/ubigeo.dto';
 import { TranslateModule } from '@ngx-translate/core';
@@ -26,6 +27,7 @@ import { UbigeoService } from './../../core/service/ubigeo.service';
         MatFormFieldModule,
         MatInputModule,
         MatIconModule,
+        MatMenuModule,
         RouterLink,
         MatButtonModule,
         TranslateModule,
@@ -43,6 +45,10 @@ export class SignupComponent implements OnInit {
   departments: DepartmentDto[] = []; 
   provinces: ProvinceDto[] = []; 
   districts: DistrictDto[] = [];
+  flagvalue: string | string[] | undefined;
+  defaultFlag?: string;
+  countryName: string | string[] = [];
+  langStoreValue?: string;
   selectedDepartmentId: string = '01';
   selectedProvinceId: string = '0101';
   selectedDistrictId: string  = '010101';
@@ -53,8 +59,21 @@ export class SignupComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private ubigeoService: UbigeoService,
-    private authService: AuthService
+    private authService: AuthService,
+    public languageService: LanguageService
   ) { }
+  
+  listLang = [
+    { text: 'Spanish', flag: 'assets/images/flags/spain.svg', lang: 'es' },
+    { text: 'English', flag: 'assets/images/flags/us.svg', lang: 'en' },
+  ];
+  setLanguage(text: string, lang: string, flag: string) {
+    this.countryName = text;
+    this.flagvalue = flag;
+    this.langStoreValue = lang;
+    this.languageService.setLanguage(lang);
+  }
+
   ngOnInit() {
     this.genders = Object.keys(Gender).map(key => ({
       value: Gender[key as keyof typeof Gender],
@@ -90,10 +109,21 @@ export class SignupComponent implements OnInit {
 
     this.authForm.get('ubigeoProvinceId')?.valueChanges.subscribe(value => {
       const selectedProvinceId = value;
-      this.loadDistricts(this.selectedDepartmentId, selectedProvinceId); // Llama a cargar distritos
+      this.loadDistricts(this.selectedDepartmentId, selectedProvinceId);
     });
 
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.langStoreValue = localStorage.getItem('lang') as string;
+    const val = this.listLang.filter((x) => x.lang === this.langStoreValue);
+    this.countryName = val.map((element) => element.text);
+    if (val.length === 0) {
+      if (this.flagvalue === undefined) {
+        this.defaultFlag = 'assets/images/flags/us.svg';
+      }
+    } else {
+      this.flagvalue = val.map((element) => element.flag);
+    }
+    
+ //   this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
   loadDepartments() {
@@ -166,8 +196,7 @@ export class SignupComponent implements OnInit {
         console.error('Error registratio user:', error);
       }
     )
-    console.log('RegisterDto:', registerDto);
 
-    this.router.navigate(['/admin/dashboard/main']);
+    //mostrar un mensaje de éxito
   }
 }
