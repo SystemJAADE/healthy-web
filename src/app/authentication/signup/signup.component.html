@@ -81,17 +81,41 @@
             </div>
 
             <div class="row">
+              <!-- Document Type -->
+              <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <mat-label>{{ 'SIGN_UP.DOCUMENT_TYPE' | translate }}</mat-label>
+                  <mat-select formControlName="documentType" required>
+                    <mat-option *ngFor="let documentType of documentTypes" [value]="documentType.value">
+                      {{ documentType.viewValue }}
+                    </mat-option>
+                  </mat-select>
+                  <mat-icon class="material-icons-outlined color-icon p-3" matSuffix>card_membership</mat-icon>
+                  <mat-error *ngIf="authForm.get('documentType')?.hasError('required')">
+                    {{ 'SIGN_UP.DOCUMENT_TYPE_IS_REQUIRED' | translate }}
+                  </mat-error>
+                </mat-form-field>
+              </div>
               <!-- Document Identity -->
               <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                 <mat-form-field class="example-full-width" appearance="outline">
                   <mat-label>{{ 'SIGN_UP.DOCUMENT_IDENTITY' | translate }}</mat-label>
-                  <input matInput formControlName="documentIdentity" required>
+                  <input
+                  matInput
+                  formControlName="documentIdentity"
+                  required
+                  type="tel"
+                  pattern="[0-9]*"
+                  inputmode="numeric">
                   <mat-icon class="material-icons-outlined color-icon p-3" matSuffix>card_membership</mat-icon>
                   <mat-error *ngIf="authForm.get('documentIdentity')?.hasError('required') && authForm.get('documentIdentity')?.touched">
                     {{ 'SIGN_UP.DOCUMENT_IDENTITY_IS_REQUIRED' | translate }}
                   </mat-error>
                 </mat-form-field>
               </div>
+            </div>
+
+            <div class="row">
               <!-- Gender -->
               <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                 <mat-form-field class="example-full-width" appearance="outline">
@@ -107,28 +131,20 @@
                   </mat-error>
                 </mat-form-field>
               </div>
-            </div>
-
-            <div class="row">
               <!-- Cell Phone -->
               <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                 <mat-form-field class="example-full-width" appearance="outline">
                   <mat-label>{{ 'SIGN_UP.CELL_PHONE' | translate }}</mat-label>
-                  <input matInput formControlName="cellPhone" required>
+                  <input
+                  matInput
+                  formControlName="cellPhone"
+                  required
+                  type="tel"
+                  pattern="[0-9]*"
+                  inputmode="numeric">
                   <mat-icon class="material-icons-outlined color-icon p-3" matSuffix>phone_iphone</mat-icon>
                   <mat-error *ngIf="authForm.get('cellPhone')?.hasError('required') && authForm.get('cellPhone')?.touched">
                     {{ 'SIGN_UP.CELL_PHONE_IS_REQUIRED' | translate }}
-                  </mat-error>
-                </mat-form-field>
-              </div>
-              <!-- Home Phone -->
-              <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
-                <mat-form-field class="example-full-width" appearance="outline">
-                  <mat-label>{{ 'SIGN_UP.HOME_PHONE' | translate }}</mat-label>
-                  <input matInput formControlName="homePhone" required>
-                  <mat-icon class="material-icons-outlined color-icon p-3" matSuffix>phone</mat-icon>
-                  <mat-error *ngIf="authForm.get('homePhone')?.hasError('required') && authForm.get('homePhone')?.touched">
-                    {{ 'SIGN_UP.HOME_PHONE_IS_REQUIRED' | translate }}
                   </mat-error>
                 </mat-form-field>
               </div>
@@ -201,9 +217,9 @@
               <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                 <mat-form-field class="example-full-width" appearance="outline">
                   <mat-label>{{ 'SIGN_UP.EMAIL' | translate }}</mat-label>
-                  <input matInput formControlName="email" required>
+                  <input matInput formControlName="emailAddress" required>
                   <mat-icon class="material-icons-outlined color-icon p-3" matSuffix>mail</mat-icon>
-                  @if (authForm.get('email')!.hasError('required') || authForm.get('email')!.touched) {
+                  @if (authForm.get('emailAddress')!.hasError('required') || authForm.get('emailAddress')!.touched) {
                   <mat-error>
                     {{ 'SIGN_UP.PLEASE_ENTER_A_VALID_EMAIL_ADDRESS' | translate }}
                   </mat-error>

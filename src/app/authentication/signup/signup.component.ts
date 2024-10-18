@@ -8,13 +8,16 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { AuthService, LanguageService } from '@core';
 import { RegisterDto } from '@core/models/register.dto';
 import { DepartmentDto, DistrictDto, ProvinceDto } from '@core/models/ubigeo.dto';
+import { NotificationService } from '@core/service/notification.service';
 import { TranslateModule } from '@ngx-translate/core';
+import { DocumentType } from 'app/models/documenttype.enum';
 import { Gender } from 'app/models/gender.enum';
 import { UbigeoService } from './../../core/service/ubigeo.service';
+
 @Component({
     selector: 'app-signup',
     templateUrl: './signup.component.html',
@@ -41,6 +44,7 @@ export class SignupComponent implements OnInit {
   returnUrl!: string;
   hide = true;
   chide = true;
+  documentTypes: { value: string, viewValue: string }[] = [];
   genders: { value: string, viewValue: string }[] = [];
   departments: DepartmentDto[] = []; 
   provinces: ProvinceDto[] = []; 
@@ -57,10 +61,10 @@ export class SignupComponent implements OnInit {
   constructor(
     private formBuilder: UntypedFormBuilder,
     private route: ActivatedRoute,
-    private router: Router,
     private ubigeoService: UbigeoService,
     private authService: AuthService,
-    public languageService: LanguageService
+    public languageService: LanguageService,
+    private notificationService: NotificationService
   ) { }
   
   listLang = [
@@ -75,27 +79,31 @@ export class SignupComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.documentTypes = Object.keys(DocumentType).map(key => ({
+      value: DocumentType[key as keyof typeof DocumentType],
+      viewValue: key.charAt(0).toUpperCase() + key.slice(1).toLowerCase()
+    }));
+
     this.genders = Object.keys(Gender).map(key => ({
       value: Gender[key as keyof typeof Gender],
       viewValue: key.charAt(0).toUpperCase() + key.slice(1).toLowerCase()
     }));
 
     this.authForm = this.formBuilder.group({
-      firstSurname: ['', Validators.required],
-      secondSurname: ['', Validators.required],
-      firstName: ['', Validators.required],
-      middleName: ['', Validators.required],
-      documentIdentity: ['', Validators.required],
+      firstSurname: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]*$/)]],
+      secondSurname: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]*$/)]],
+      firstName: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]*$/)]],
+      middleName: ['', [Validators.pattern(/^[a-zA-Z]*$/)]],
+      documentType: ['', Validators.required],
+      documentIdentity: ['', [Validators.minLength(8), Validators.maxLength(10), Validators.pattern(/^\d{8,10}$/)]],
       gender: ['', Validators.required],
-      cellPhone: ['', Validators.required],
-      homePhone: ['', Validators.required],
+      cellPhone: ['', [Validators.minLength(9), Validators.maxLength(9), Validators.pattern(/^\d{9}$/)]],
       address: ['', Validators.required],
       ubigeoDepartmentId: ['', Validators.required],
       ubigeoProvinceId: ['', Validators.required],
       ubigeoDistrictId: ['', Validators.required],
-
+      emailAddress: ['', [Validators.required, Validators.email, Validators.minLength(15)]],
       username: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email, Validators.minLength(10)]],
       password: ['', Validators.required],
       cpassword: ['', Validators.required],
     });
@@ -123,7 +131,7 @@ export class SignupComponent implements OnInit {
       this.flagvalue = val.map((element) => element.flag);
     }
     
- //   this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
   loadDepartments() {
@@ -178,25 +186,36 @@ export class SignupComponent implements OnInit {
       secondSurname: formValue.secondSurname,
       firstName: formValue.firstName,
       middleName: formValue.middleName,
+      documentType: formValue.documentType as DocumentType,
       documentIdentity: formValue.documentIdentity,
       gender: formValue.gender as Gender,
       cellPhone: formValue.cellPhone,
-      homePhone: formValue.homePhone,
       address: formValue.address,
       ubigeoDepartmentId: formValue.ubigeoDepartmentId,
       ubigeoProvinceId: formValue.ubigeoProvinceId,
-      ubigeoDistrictId: formValue.ubigeoDistrictId
+      ubigeoDistrictId: formValue.ubigeoDistrictId,
+      emailAddress: formValue.emailAddress,
     };
 
     this.authService.registration(registerDto).subscribe(
       (data) => {
         console.log(data)
+        this.notificationService.showNotification(
+          'snackbar-success',
+          `Registro exitoso`,
+          'bottom',
+          'center'
+        );
       },
       (error) => {
-        console.error('Error registratio user:', error);
+        console.error('Error registration user:', error);
+        this.notificationService.showNotification(
+          'snackbar-danger',
+          `error: ${error}`,
+          'bottom',
+          'center'
+        );
       }
     )
-
-    //mostrar un mensaje de éxito
   }
 }

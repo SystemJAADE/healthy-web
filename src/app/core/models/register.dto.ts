@@ -1,3 +1,4 @@
+import { DocumentType } from "app/models/documenttype.enum";
 import { Gender } from "app/models/gender.enum";
 
 export interface RegisterDto {
@@ -7,12 +8,13 @@ export interface RegisterDto {
     secondSurname: string;
     firstName: string;
     middleName?: string;
+    documentType: DocumentType;
     documentIdentity: string;
     gender: Gender;
     cellPhone: string;
-    homePhone?: string;
     address: string;
     ubigeoDepartmentId: string;
     ubigeoProvinceId: string;
-    ubigeoDistrictId: string;  
+    ubigeoDistrictId: string;
+    emailAddress: string;
 }
