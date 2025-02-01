@@ -1,0 +1,13 @@
+services:
+  api:
+    build:
+      dockerfile: Dockerfile
+      context: .
+      target: development
+    tty: true
+    command: ['/bin/sh', '/usr/src/app/bin/start-dev.sh']
+    volumes:
+      - /usr/src/app/node_modules
+      - .:/usr/src/app
+    ports:
+      - 4200:4200
